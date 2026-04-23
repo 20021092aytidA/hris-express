@@ -1,11 +1,16 @@
 const express = require("express");
 const app = express();
+const multer = require("multer");
+const upload = multer();
 const db = require("./config/sequelize");
 const corsHandle = require("./middleware/cors");
 const env = require("dotenv").config();
 const sequelize = require("./config/sequelize");
+const adminRouter = require("./routes/admin");
 
 app.use(corsHandle);
+
+app.use("/hrsi-api/v1/admins", upload.none(), adminRouter);
 
 // Sync Database
 sequelize
