@@ -12,12 +12,6 @@ app.use(corsHandle);
 
 app.use("/hrsi-api/v1/admins", upload.none(), adminRouter);
 
-// Sync Database
-sequelize
-  .sync()
-  .then(() => console.log("Database & tables created!"))
-  .catch((err) => console.error("Error syncing database:", err));
-
 app.listen(process.env.API_PORT, (err) => {
   if (err) {
     throw new Error(err);

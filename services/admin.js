@@ -1,7 +1,14 @@
 const Admin = require("../models/admin");
 
-const CreateAdmin = async (newAdmin) => {
-  const result = await Admin.create(newAdmin);
+const ViewAdmin = async (qry) => {
+  const view = await Admin.findAll({
+    where: qry,
+  });
+  return view;
 };
 
-module.exports = { CreateAdmin };
+const CreateAdmin = async (newAdmin) => {
+  const create = await Admin.create(newAdmin);
+};
+
+module.exports = { ViewAdmin, CreateAdmin };
