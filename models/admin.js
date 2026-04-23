@@ -6,7 +6,6 @@ const Admin = sequelize.define(
   "Admin",
   {
     id: {
-      field: "id",
       type: DataTypes.INTEGER,
       allowNull: false,
       autoIncrement: true,
@@ -19,13 +18,11 @@ const Admin = sequelize.define(
       allowNull: false,
     },
     username: {
-      field: "username",
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
     },
     password: {
-      field: "password",
       type: DataTypes.STRING,
       allowNull: false,
       set(pass) {
@@ -71,13 +68,13 @@ const Admin = sequelize.define(
       allowNull: true,
     },
   },
-  {
-    defaultScope: {
-      attributes: {
-        exclude: ["password"],
-      },
-    },
-  },
+  // {
+  //   defaultScope: {
+  //     attributes: {
+  //       exclude: ["password"],
+  //     },
+  //   },
+  // },
 );
 
 module.exports = Admin;
