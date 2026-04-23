@@ -10,7 +10,7 @@ const adminRouter = require("./routes/admin");
 
 app.use(corsHandle);
 
-app.use("/hrsi-api/v1/admins", upload.none(), adminRouter);
+app.use("/hris-api/v1/admins", upload.none(), adminRouter);
 
 app.listen(process.env.API_PORT, (err) => {
   if (err) {

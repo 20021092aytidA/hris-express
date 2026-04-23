@@ -1,10 +1,12 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/sequelize");
+const bcrypt = require("bcrypt");
 
 const Admin = sequelize.define(
   "Admin",
   {
     id: {
+      field: "id",
       type: DataTypes.INTEGER,
       allowNull: false,
       autoIncrement: true,
@@ -17,13 +19,20 @@ const Admin = sequelize.define(
       allowNull: false,
     },
     username: {
+      field: "username",
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
     },
     password: {
+      field: "password",
       type: DataTypes.STRING,
       allowNull: false,
+      set(pass) {
+        const salt = bcrypt.genSaltSync(10);
+        const hashed = bcrypt.hashSync(pass, salt);
+        this.setDataValue("password", hashed);
+      },
     },
     isSuperAdmin: {
       field: "is_super_admin",
